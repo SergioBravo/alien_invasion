@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+import pygame
+
+
 class Settings():
     """Класс для хранения всех настроек игры Alien Ivasion"""
 
@@ -8,6 +11,7 @@ class Settings():
         self.screen_width = 840
         self.screen_height = 640
         self.bg_color = (230, 230, 230)
+        self.bg_image = pygame.image.load('assets/background.png')
 
         # Настройки корабля
         self.ship_limit = 3

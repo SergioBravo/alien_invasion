@@ -13,6 +13,11 @@ def run_game():
     # Инициализация pygame, settings и создание объекта экрана
     pygame.init()
     pygame.mixer.pre_init(44100, 16, 2, 4096)
+
+    clock = pygame.time.Clock()
+
+    fps = 120
+
     ai_settings = Settings()
 
     screen = pygame.display.set_mode((ai_settings.screen_width,
@@ -42,6 +47,7 @@ def run_game():
 
     # Запуск основного цикла игры
     while True:
+
         # Отслеживание событий клавиатуры и мыши
         gf.check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets)
 
@@ -55,6 +61,8 @@ def run_game():
 
         # При каждом проходе цикла перерисовываем экран
         gf.update_screen(ai_settings, stats, sb, screen, ship, aliens, bullets, play_button)
+
+        clock.tick(fps)
 
 
 run_game()

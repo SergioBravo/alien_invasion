@@ -18,7 +18,7 @@ class Button():
         self.rect = pygame.Rect(0, 0, self.width, self.height)
         self.rect.center = self.screen_rect.center
 
-        #Сообщение кнопки создается только один раз
+        # Сообщение кнопки создается только один раз
         self.prep_msg(msg)
 
     def prep_msg(self, msg):
@@ -28,6 +28,6 @@ class Button():
         self.msg_image_rect.center = self.rect.center
 
     def draw_button(self):
-        #Отображение пустой кнопки и вывод сообщения
+        # Отображение пустой кнопки и вывод сообщения
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)

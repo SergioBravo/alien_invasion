@@ -30,8 +30,6 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb,
         explosion = pygame.mixer.Sound('sound/effects/sfx_exp_short_hard14.wav')
         explosion.play()
         for aliens in collisions.values():
-
-
             stats.score += ai_settings.alien_points
             sb.prep_score()
             check_high_score(stats, sb)
@@ -113,6 +111,7 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens,
     """Запускает новую игру при нажатии кнопки Play"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
+        pygame.mixer.music.stop()
         # Сброс игровых настроек
         ai_settings.initialize_dynamic_settings()
 
@@ -234,24 +233,25 @@ def update_aliens(ai_settings, stats, sb, screen, ship, aliens, bullets):
 
 def update_screen(ai_settings, stats, sb, screen, ship, aliens, bullets, play_button):
     """Обновляет изображения и отображает новый экран"""
-    #При каждом проходе цикла перерисовываем экран
-    screen.fill(ai_settings.bg_color)
+    # При каждом проходе цикла перерисовываем экран
+    # screen.fill(ai_settings.bg_color)
+    screen.blit(ai_settings.bg_image, (0, 0))
 
-    #Все пули выводятся позади изображения корабля и пришельцев
+    # Все пули выводятся позади изображения корабля и пришельцев
     for bullet in bullets.sprites():
         bullet.draw_bullet()
 
     ship.blitme()
     aliens.draw(screen)
 
-    #Вывод счета
+    # Вывод счета
     sb.show_score()
 
-    #Кнопка Play отображается в том случае, если игра неактивна
+    # Кнопка Play отображается в том случае, если игра неактивна
     if not stats.game_active:
         play_button.draw_button()
 
-    #Отображение последнего прорисованного экрана
+    # Отображение последнего прорисованного экрана
     pygame.display.flip()
 
 
@@ -266,3 +266,7 @@ def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+
+#def moving_background(ai_settings, screen, stats):
+
