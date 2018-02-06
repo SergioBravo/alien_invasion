@@ -223,11 +223,11 @@ def update_aliens(ai_settings, stats, sb, screen, ship, aliens, bullets):
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
 
-    #Проверка коллизий "пришлец-корабль"
+    # Проверка коллизий "пришлец-корабль"
     if pygame.sprite.spritecollideany(ship, aliens):
         ship_hit(ai_settings, stats, sb, screen, ship, aliens, bullets)
 
-    #Проверка пришельцев, добравшихся до нижнего края экрана
+    # Проверка пришельцев, добравшихся до нижнего края экрана
     check_aliens_bottom(ai_settings, stats, sb, screen, ship, aliens, bullets)
 
 
@@ -239,7 +239,7 @@ def update_screen(ai_settings, stats, sb, screen, ship, aliens, bullets, play_bu
 
     # Все пули выводятся позади изображения корабля и пришельцев
     for bullet in bullets.sprites():
-        bullet.draw_bullet()
+        bullet.draw_bullet(ai_settings)
 
     ship.blitme()
     aliens.draw(screen)
@@ -257,16 +257,12 @@ def update_screen(ai_settings, stats, sb, screen, ship, aliens, bullets, play_bu
 
 def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Обновляет позиции пуль и уничтожает старые пули"""
-    #Обновление позиции пуль
+    # Обновление позиции пуль
     bullets.update()
 
     check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
-    #Удаление пуль, вышедших за край экрана
+    # Удаление пуль, вышедших за край экрана
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-
-
-#def moving_background(ai_settings, screen, stats):
-
