@@ -4,31 +4,30 @@ class Settings():
 
     def __init__(self):
         """Инициализация настроек игры"""
-        #Параметры экрана
+        # Параметры экрана
         self.screen_width = 840
         self.screen_height = 640
         self.bg_color = (230, 230, 230)
 
-        #Настройки корабля
+        # Настройки корабля
         self.ship_limit = 3
 
-        #Параметры пули
+        # Параметры пули
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60
         self.bullets_allowed = 3
 
-        #Настройки пришельцев
+        # Настройки пришельцев
         self.fleet_drop_speed = 10
 
-        #Темп ускорения игры
+        # Темп ускорения игры
         self.speedup_scale = 1.1
 
-        #Темп роста стоимости пришельца
+        # Темп роста стоимости пришельца
         self.score_scale = 1.5
 
         self.initialize_dynamic_settings()
-
 
     def initialize_dynamic_settings(self):
         """Инициализирует настройки, изменяющиеся в ходе игры"""
@@ -39,7 +38,7 @@ class Settings():
         # fleet_direction = 1 обозначает движение вправо, а -1 -- влево
         self.fleet_direction = 1
 
-        #Подсчет очков
+        # Подсчет очков
         self.alien_points = 50
 
     def increase_speed(self):
